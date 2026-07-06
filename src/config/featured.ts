@@ -15,17 +15,24 @@ export interface FeaturedProject {
 export const FEATURED: FeaturedProject[] = [
   {
     repo: "spotify-playlist-subscribe-v2",
-    title: "Spotify Playlist Subscribe",
+    title: "PlaylistFox (Web)",
     blurb:
       "Built to solve my own problem: manually keeping Spotify playlists fresh. Set it up once and it keeps your playlists updated automatically.",
     tags: ["TypeScript", "Spotify API", "Automation"],
   },
   {
     repo: "playlist-fox-react-native",
-    title: "Playlist Fox (Mobile)",
+    title: "PlaylistFox (Mobile)",
     blurb:
       "A mobile take on the playlist tooling, built with React Native. Still in progress, but coming together nicely.",
     tags: ["React Native", "TypeScript", "In Progress"],
+  },
+  {
+    repo: "portfolio-website",
+    title: "This Site",
+    blurb:
+      "The site you're looking at — a Next.js portfolio with a hover-to-play render reel and 4K scenes streamed from S3 behind CloudFront.",
+    tags: ["Next.js", "TypeScript", "AWS"],
   },
 ];
 

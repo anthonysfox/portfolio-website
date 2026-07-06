@@ -113,7 +113,7 @@ export default async function Home() {
             <div className="sec-head" style={{ marginBottom: 56 }}>
               <span className="eyebrow">Projects</span>
               <h2>Things I&apos;ve built.</h2>
-              <p>A couple of personal projects — one live, one in progress.</p>
+              <p>A few personal projects — including the site you&apos;re looking at.</p>
             </div>
           </Reveal>
 
@@ -124,7 +124,7 @@ export default async function Home() {
               const demoUrl = f.demo ?? live?.homepage;
 
               return (
-                <Reveal key={f.repo} delay={i * 0.1}>
+                <Reveal key={f.repo} delay={i * 0.1} style={{ height: "100%" }}>
                   <div className="panel">
                     <div className="panel-bar">
                       <span className="lights">
