@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Amplify's build image has no pnpm — enable Corepack and pin the version.
+        - corepack enable
+        - corepack prepare pnpm@10.10.0 --activate
+        - pnpm install --frozen-lockfile
+    build:
+      commands:
+        - pnpm run build
+  artifacts:
+    # Next.js SSR/ISR build output (NOT `out` — that's only for static export).
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*
