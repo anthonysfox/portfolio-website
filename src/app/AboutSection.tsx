@@ -1,8 +1,6 @@
 import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
-const SECTION_PAD = "clamp(64px, 9vh, 96px) 0";
-
 const aboutParagraphs = [
   "Hi, I'm Anthony. I'm a full-stack engineer with over six years of experience, focused on building and modernizing web apps. I've spent most of my career working on production-level systems and REST APIs that can handle real-world use. I enjoy the challenge of a tricky architectural problem as much as I love getting the details of a user experience just right. My go-to tools are React, TypeScript, Node.js, and AWS.",
   "When I'm not coding, I'm usually creating digital worlds in Blender and Unreal Engine 5. I love exploring the intersection of nature, architecture, and technology—from sunlit forest gardens to atmospheric sci-fi monoliths. This site is where my two passions meet: the logic of code and the beauty of 3D art.",
