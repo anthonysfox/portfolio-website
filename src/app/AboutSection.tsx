@@ -18,10 +18,7 @@ export default function AboutSection() {
           <div className={styles.aboutContent}>
             <span className="eyebrow">About</span>
             <h2 className={styles.aboutH2}>
-              A bit{" "}
-              <span style={{ color: "var(--amber)", fontStyle: "italic" }}>
-                about me.
-              </span>
+              A bit <span className={styles.amberItalic}>about me.</span>
             </h2>
             {aboutParagraphs.map((para, i) => (
               <p key={i} className={styles.aboutP}>

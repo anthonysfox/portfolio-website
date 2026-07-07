@@ -6,14 +6,12 @@ export default function ContactSection() {
     <section id="contact" className={styles.contactSection}>
       <div className={styles.wrap}>
         <Reveal>
-          <span className="eyebrow" style={{ justifyContent: "center" }}>
+          <span className={`eyebrow ${styles.contactEyebrow}`}>
             Get in touch
           </span>
           <h2 className={styles.contactH2}>
             Looking for my{" "}
-            <span style={{ color: "var(--amber)", fontStyle: "italic" }}>
-              next role.
-            </span>
+            <span className={styles.amberItalic}>next role.</span>
           </h2>
           <p className={styles.contactP}>
             I&apos;m actively looking for full-stack engineering roles. Whether

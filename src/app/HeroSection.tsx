@@ -5,16 +5,8 @@ import styles from "./page.module.css";
 
 export default function HeroSection() {
   return (
-    <header
-      id="top"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        padding: "140px 0 90px",
-      }}
-    >
-      <div className={styles.wrap} style={{ width: "100%" }}>
+    <header id="top" className={styles.heroHeader}>
+      <div className={`${styles.wrap} ${styles.heroWrap}`}>
         <div className={styles.heroGrid}>
           {/* Left column */}
           <div>

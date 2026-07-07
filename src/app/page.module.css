@@ -80,6 +80,15 @@
   font-size: clamp(16px, 1.4vw, 19px);
 }
 
+/* Typography Helpers */
+.contactEyebrow {
+  justify-content: center;
+}
+.amberItalic {
+  color: var(--amber);
+  font-style: italic;
+}
+
 /* Components */
 .stackTitle {
   font-size: 13px;
@@ -160,6 +169,46 @@
   font-size: 12px;
   color: var(--muted-2);
   font-family: var(--font-mono);
+}
+
+/* Hero Section */
+.heroHeader {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 90px;
+}
+
+.heroWrap {
+  width: 100%;
+}
+
+.heroH1 {
+  font-size: clamp(40px, 7vw, 92px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 22px 0 26px;
+}
+
+.heroP {
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 28px;
+  font-size: clamp(16px, 1.4vw, 19px);
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.heroMetaStrong {
+  color: var(--cream);
 }
 
 /* Grids */

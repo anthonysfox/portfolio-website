@@ -18,7 +18,7 @@ export const FEATURED: FeaturedProject[] = [
     title: "PlaylistFox (Web)",
     blurb:
       "Built to solve my own problem: manually keeping Spotify playlists fresh. Set it up once and it keeps your playlists updated automatically.",
-    tags: ["TypeScript", "Spotify API", "Automation"],
+    tags: ["Next.js", "React", "TypeScript", "Spotify API", "Automation"],
   },
   {
     repo: "playlist-fox-react-native",
@@ -28,11 +28,12 @@ export const FEATURED: FeaturedProject[] = [
     tags: ["React Native", "TypeScript", "In Progress"],
   },
   {
-    repo: "portfolio-website",
-    title: "This Site",
+    repo: "personal_website", // Or your repo name
+    title: "Personal Portfolio",
     blurb:
-      "The site you're looking at — a Next.js portfolio with a hover-to-play render reel and 4K scenes streamed from S3 behind CloudFront.",
-    tags: ["Next.js", "TypeScript", "AWS"],
+      "The Next.js site you're looking at now. Media is served via Cloudflare and built with TypeScript with Motion animations.",
+    tags: ["Next.js", "React", "TypeScript", "Motion", "Cloudflare"],
+    demo: "https://anthonyfox.dev/",
   },
 ];
 
