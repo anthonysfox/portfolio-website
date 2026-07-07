@@ -10,7 +10,15 @@ interface Props {
   renders: Render[];
 }
 
-function GalleryCard({ render, onClick }: { render: Render; onClick: () => void }) {
+function GalleryCard({
+  render,
+  onClick,
+  isMobile,
+}: {
+  render: Render;
+  onClick: () => void;
+  isMobile: boolean;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const play = () => videoRef.current?.play();
@@ -21,17 +29,26 @@ function GalleryCard({ render, onClick }: { render: Render; onClick: () => void 
     }
   };
 
+  const handleClick = () => {
+    if (isMobile && videoRef.current) {
+      videoRef.current.requestFullscreen().catch(() => {});
+      videoRef.current.play();
+    } else {
+      onClick();
+    }
+  };
+
   return (
     <div
       className="viewport render-frame"
       role="button"
       tabIndex={0}
       aria-label={`Play ${render.filename} render`}
-      onClick={onClick}
+      onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          onClick();
+          handleClick();
         }
       }}
       onMouseEnter={play}
@@ -52,7 +69,14 @@ function GalleryCard({ render, onClick }: { render: Render; onClick: () => void 
       </div>
       <div className="vp-media ratio-16-9">
         {/* #t=0.1 shows a still poster frame instead of black before hover */}
-        <video ref={videoRef} muted loop playsInline preload="metadata" src={`${render.src}#t=0.1`} />
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          src={`${render.src}#t=0.1`}
+        />
         <div className="card-overlay">
           <span className="play-hint">▶ Play</span>
         </div>
@@ -65,7 +89,15 @@ function GalleryCard({ render, onClick }: { render: Render; onClick: () => void 
  * The section's hero render — wide, and autoplays on its own while it's in view
  * (paused otherwise to save cycles). Click to open the full modal.
  */
-function FeaturedRender({ render, onClick }: { render: Render; onClick: () => void }) {
+function FeaturedRender({
+  render,
+  onClick,
+  isMobile,
+}: {
+  render: Render;
+  onClick: () => void;
+  isMobile: boolean;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
 
@@ -77,11 +109,20 @@ function FeaturedRender({ render, onClick }: { render: Render; onClick: () => vo
         if (entry.isIntersecting) v.play().catch(() => {});
         else v.pause();
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
     io.observe(v);
     return () => io.disconnect();
   }, [reduce]);
+
+  const handleClick = () => {
+    if (isMobile && videoRef.current) {
+      videoRef.current.requestFullscreen().catch(() => {});
+      videoRef.current.play();
+    } else {
+      onClick();
+    }
+  };
 
   return (
     <div
@@ -89,11 +130,11 @@ function FeaturedRender({ render, onClick }: { render: Render; onClick: () => vo
       role="button"
       tabIndex={0}
       aria-label={`Open ${render.filename} render`}
-      onClick={onClick}
+      onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          onClick();
+          handleClick();
         }
       }}
     >
@@ -109,7 +150,14 @@ function FeaturedRender({ render, onClick }: { render: Render; onClick: () => vo
         <span>{render.resolution}</span>
       </div>
       <div className="vp-media ratio-16-9">
-        <video ref={videoRef} muted loop playsInline preload="auto" src={`${render.src}#t=0.1`} />
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="auto"
+          src={`${render.src}#t=0.1`}
+        />
         <div className="card-overlay">
           <span className="play-hint">⤢ Expand</span>
         </div>
@@ -121,7 +169,22 @@ function FeaturedRender({ render, onClick }: { render: Render; onClick: () => vo
 export default function RendersGallery({ renders }: Props) {
   const [active, setActive] = useState<Render | null>(null);
   const reduce = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
   const [featured, ...rest] = renders;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 540px)");
+    const handleResize = () => setIsMobile(mediaQuery.matches);
+
+    // Initial check
+    handleResize();
+
+    // Listen for changes
+    mediaQuery.addEventListener("change", handleResize);
+
+    // Cleanup
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   return (
     <>
@@ -133,7 +196,11 @@ export default function RendersGallery({ renders }: Props) {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: reduce ? 0.3 : 0.8, ease: EASE }}
         >
-          <FeaturedRender render={featured} onClick={() => setActive(featured)} />
+          <FeaturedRender
+            render={featured}
+            onClick={() => setActive(featured)}
+            isMobile={isMobile}
+          />
         </motion.div>
       )}
 
@@ -145,14 +212,24 @@ export default function RendersGallery({ renders }: Props) {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: reduce ? 0.3 : 0.7, ease: EASE, delay: reduce ? 0 : (i % 2) * 0.08 }}
+            transition={{
+              duration: reduce ? 0.3 : 0.7,
+              ease: EASE,
+              delay: reduce ? 0 : (i % 2) * 0.08,
+            }}
           >
-            <GalleryCard render={r} onClick={() => setActive(r)} />
+            <GalleryCard
+              render={r}
+              onClick={() => setActive(r)}
+              isMobile={isMobile}
+            />
           </motion.div>
         ))}
       </div>
 
-      {active && <RenderModal render={active} onClose={() => setActive(null)} />}
+      {active && !isMobile && (
+        <RenderModal render={active} onClose={() => setActive(null)} />
+      )}
 
       <style>{`
         .featured-wrap {
