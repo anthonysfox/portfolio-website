@@ -18,10 +18,13 @@ function useIsTouch() {
 }
 
 /**
- * Hand the full-quality clip to the device's native video player (fullscreen,
- * native controls, sound). Reuses the tile's own <video> so the call stays
- * inside the tap gesture — iOS requires `webkitEnterFullscreen`, which the old
- * `requestFullscreen` code silently failed at. Restores the muted preview on exit.
+ * Hand the full-quality clip to the device's native video player.
+ *
+ * iOS is the tricky one: it will only auto-open its fullscreen player if the
+ * <video> is NOT `playsinline` when play() is called — so we drop that
+ * attribute here (and restore it on exit). We also force native `controls` so
+ * the clip is always stoppable, and add explicit fullscreen calls for Android.
+ * Reuses the tile's own <video> so everything stays inside the tap gesture.
  */
 function openInNativePlayer(video: HTMLVideoElement, render: Render) {
   const el = video as HTMLVideoElement & { webkitEnterFullscreen?: () => void };
@@ -29,13 +32,20 @@ function openInNativePlayer(video: HTMLVideoElement, render: Render) {
 
   el.muted = false;
   el.loop = false;
+  el.controls = true;
+  el.playsInline = false;
+  el.removeAttribute("playsinline"); // iOS: lets play() open the fullscreen player
   el.src = render.full ?? render.src;
+  el.load();
 
   const restore = () => {
     document.removeEventListener("fullscreenchange", onFsChange);
     el.pause();
     el.muted = true;
     el.loop = true;
+    el.controls = false;
+    el.playsInline = true;
+    el.setAttribute("playsinline", "");
     el.src = previewSrc;
     el.load();
   };
@@ -43,15 +53,16 @@ function openInNativePlayer(video: HTMLVideoElement, render: Render) {
     if (!document.fullscreenElement) restore();
   };
 
-  el.addEventListener("webkitendfullscreen", restore, { once: true }); // iOS Safari
-  document.addEventListener("fullscreenchange", onFsChange); // everything else
+  el.addEventListener("webkitendfullscreen", restore, { once: true }); // iOS
+  document.addEventListener("fullscreenchange", onFsChange); // everyone else
 
-  el.play().catch(() => {});
-  if (typeof el.webkitEnterFullscreen === "function") {
-    el.webkitEnterFullscreen();
-  } else if (el.requestFullscreen) {
-    el.requestFullscreen().catch(() => {});
-  }
+  // Start playback within the tap gesture. iOS auto-fullscreens via the missing
+  // playsinline; Android needs an explicit requestFullscreen once it's playing.
+  el.play().then(() => {
+    if (document.fullscreenElement) return;
+    if (typeof el.webkitEnterFullscreen === "function") el.webkitEnterFullscreen();
+    else el.requestFullscreen?.().catch(() => {});
+  }).catch(() => {});
 }
 
 interface Props {
