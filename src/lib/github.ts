@@ -49,7 +49,7 @@ export async function getRepos(): Promise<Repo[]> {
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         next: { revalidate: 3600 },
-      }
+      },
     );
 
     if (!res.ok) {
@@ -63,7 +63,7 @@ export async function getRepos(): Promise<Repo[]> {
       .sort(
         (a, b) =>
           b.stargazers_count - a.stargazers_count ||
-          new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
+          new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime(),
       );
   } catch (err) {
     console.error("Failed to fetch repos:", err);

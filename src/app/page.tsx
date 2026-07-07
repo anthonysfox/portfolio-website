@@ -37,7 +37,9 @@ export default async function Home() {
             {/* Left column */}
             <div>
               <Reveal>
-                <span className="eyebrow">Full-stack developer · New Jersey</span>
+                <span className="eyebrow">
+                  Full-stack developer · New Jersey
+                </span>
               </Reveal>
               <Reveal delay={0.08}>
                 <h1
@@ -65,8 +67,9 @@ export default async function Home() {
                     fontSize: "clamp(16px,1.4vw,19px)",
                   }}
                 >
-                  Full-stack developer with six years of experience shipping web apps. Off the
-                  clock, I&apos;m usually in Blender building small, glowing worlds.
+                  Full-stack developer with six years of experience shipping web
+                  apps. Off the clock, I&apos;m usually in Blender building
+                  small, glowing worlds.
                 </p>
               </Reveal>
 
@@ -81,8 +84,18 @@ export default async function Home() {
                     color: "var(--muted)",
                   }}
                 >
-                  <span>◆ Based in <strong style={{ color: "var(--cream)" }}>New Jersey</strong></span>
-                  <span>◆ <strong style={{ color: "var(--cream)" }}>Open to work</strong></span>
+                  <span>
+                    ◆ Based in{" "}
+                    <strong style={{ color: "var(--cream)" }}>
+                      New Jersey
+                    </strong>
+                  </span>
+                  <span>
+                    ◆{" "}
+                    <strong style={{ color: "var(--cream)" }}>
+                      Open to work
+                    </strong>
+                  </span>
                 </div>
               </Reveal>
 
@@ -113,14 +126,18 @@ export default async function Home() {
             <div className="sec-head" style={{ marginBottom: 56 }}>
               <span className="eyebrow">Projects</span>
               <h2>Things I&apos;ve built.</h2>
-              <p>A few personal projects — including the site you&apos;re looking at.</p>
+              <p>
+                A few personal projects — including the site you&apos;re looking
+                at.
+              </p>
             </div>
           </Reveal>
 
           <div className="code-grid">
             {FEATURED.map((f, i) => {
               const live = byName.get(f.repo);
-              const repoUrl = live?.html_url ?? `https://github.com/anthonysfox/${f.repo}`;
+              const repoUrl =
+                live?.html_url ?? `https://github.com/anthonysfox/${f.repo}`;
               const demoUrl = f.demo ?? live?.homepage;
 
               return (
@@ -132,85 +149,99 @@ export default async function Home() {
                         <i />
                         <i />
                       </span>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>
+                      <span
+                        style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}
+                      >
                         ~/projects/{f.repo}
                       </span>
                     </div>
-                    <div className="panel-body">
-                      <div
-                        style={{
-                          fontSize: 20,
-                          fontWeight: 600,
-                          marginBottom: 10,
-                          color: "var(--cream)",
-                        }}
-                      >
-                        {f.title}
-                      </div>
-                      <p
-                        style={{
-                          color: "var(--muted)",
-                          fontSize: 15,
-                          lineHeight: 1.6,
-                          marginBottom: 16,
-                        }}
-                      >
-                        {f.blurb}
-                      </p>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
-                        {f.tags.map((t) => (
-                          <span key={t} className="tag">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                      <div style={{ display: "flex", gap: 20, fontSize: 14 }}>
-                        <a
-                          href={repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                    <div className="panel-body flex flex-col justify-between">
+                      <div className="top">
+                        <div
                           style={{
-                            color: "var(--amber)",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 4,
+                            fontSize: 20,
+                            fontWeight: 600,
+                            marginBottom: 10,
+                            color: "var(--cream)",
                           }}
                         >
-                          Source ↗
-                        </a>
-                        {demoUrl && (
+                          {f.title}
+                        </div>
+                        <p
+                          style={{
+                            color: "var(--muted)",
+                            fontSize: 15,
+                            lineHeight: 1.6,
+                            marginBottom: 16,
+                          }}
+                        >
+                          {f.blurb}
+                        </p>
+                      </div>
+                      <div className="bottomm">
+                        <div
+                          style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: 6,
+                            marginBottom: 20,
+                          }}
+                        >
+                          {f.tags.map((t) => (
+                            <span key={t} className="tag">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                        <div style={{ display: "flex", gap: 20, fontSize: 14 }}>
                           <a
-                            href={demoUrl}
+                            href={repoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
-                              color: "var(--muted)",
+                              color: "var(--amber)",
                               display: "flex",
                               alignItems: "center",
                               gap: 4,
                             }}
                           >
-                            Live site ↗
+                            Source ↗
                           </a>
+                          {demoUrl && (
+                            <a
+                              href={demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: "var(--muted)",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 4,
+                              }}
+                            >
+                              Live site ↗
+                            </a>
+                          )}
+                        </div>
+
+                        {live && (
+                          <div
+                            style={{
+                              marginTop: 16,
+                              paddingTop: 16,
+                              borderTop: "1px solid var(--line-soft)",
+                              display: "flex",
+                              gap: 16,
+                              fontSize: 12,
+                              color: "var(--muted-2)",
+                              fontFamily: "var(--font-mono)",
+                            }}
+                          >
+                            {live.language && <span>{live.language}</span>}
+                            <span>★ {live.stargazers_count}</span>
+                          </div>
                         )}
                       </div>
-                      {live && (
-                        <div
-                          style={{
-                            marginTop: 16,
-                            paddingTop: 16,
-                            borderTop: "1px solid var(--line-soft)",
-                            display: "flex",
-                            gap: 16,
-                            fontSize: 12,
-                            color: "var(--muted-2)",
-                            fontFamily: "var(--font-mono)",
-                          }}
-                        >
-                          {live.language && <span>{live.language}</span>}
-                          <span>★ {live.stargazers_count}</span>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </Reveal>
@@ -221,13 +252,19 @@ export default async function Home() {
       </section>
 
       {/* ===== RENDERS ===== */}
-      <section id="renders" style={{ padding: SECTION_PAD, position: "relative" }}>
+      <section
+        id="renders"
+        style={{ padding: SECTION_PAD, position: "relative" }}
+      >
         <div style={{ ...wrap, marginBottom: 56 }}>
           <Reveal>
             <div className="sec-head">
               <span className="eyebrow">3D / Blender</span>
               <h2>Scenes I&apos;ve built in Blender.</h2>
-              <p>Each one modeled, lit, and rendered from scratch. Click any scene to play it.</p>
+              <p>
+                Each one modeled, lit, and rendered from scratch. Click any
+                scene to play it.
+              </p>
             </div>
           </Reveal>
         </div>
@@ -236,7 +273,10 @@ export default async function Home() {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="about" style={{ padding: SECTION_PAD, position: "relative" }}>
+      <section
+        id="about"
+        style={{ padding: SECTION_PAD, position: "relative" }}
+      >
         <div style={wrap}>
           <Reveal>
             <div style={{ maxWidth: 760 }}>
@@ -251,7 +291,9 @@ export default async function Home() {
                 }}
               >
                 A bit{" "}
-                <span style={{ color: "var(--amber)", fontStyle: "italic" }}>about me.</span>
+                <span style={{ color: "var(--amber)", fontStyle: "italic" }}>
+                  about me.
+                </span>
               </h2>
               {[
                 "Hi, I'm Anthony Fox — a full-stack software engineer with over six years of experience building and modernizing enterprise web applications. My work lives mostly in production: full-stack systems and REST APIs that hold up under real use. I enjoy solving complex architectural problems just as much as sweating the details of a seamless user experience — usually with React, TypeScript, Node.js, and AWS.",
@@ -359,7 +401,11 @@ export default async function Home() {
       {/* ===== CONTACT ===== */}
       <section
         id="contact"
-        style={{ padding: SECTION_PAD, position: "relative", textAlign: "center" }}
+        style={{
+          padding: SECTION_PAD,
+          position: "relative",
+          textAlign: "center",
+        }}
       >
         <div style={wrap}>
           <Reveal>
@@ -376,7 +422,9 @@ export default async function Home() {
               }}
             >
               Looking for my{" "}
-              <span style={{ color: "var(--amber)", fontStyle: "italic" }}>next role.</span>
+              <span style={{ color: "var(--amber)", fontStyle: "italic" }}>
+                next role.
+              </span>
             </h2>
             <p
               style={{
@@ -386,10 +434,18 @@ export default async function Home() {
                 fontSize: "clamp(16px,1.4vw,19px)",
               }}
             >
-              I&apos;m actively looking for full-stack engineering roles. Whether you&apos;re hiring
-              or just want to connect, I&apos;d love to hear from you.
+              I&apos;m actively looking for full-stack engineering roles.
+              Whether you&apos;re hiring or just want to connect, I&apos;d love
+              to hear from you.
             </p>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: 14,
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <a href="mailto:anthonysfox1@gmail.com" className="btn primary">
                 anthonysfox1@gmail.com ↗
               </a>
