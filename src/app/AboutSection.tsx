@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
 const aboutParagraphs = [
-  "Hi, I'm Anthony. I'm a full-stack engineer with over six years of experience, focused on building and modernizing web apps. I've spent most of my career working on production-level systems and REST APIs that can handle real-world use. I enjoy the challenge of a tricky architectural problem as much as I love getting the details of a user experience just right. My go-to tools are React, TypeScript, Node.js, and AWS.",
+  "Hi, I'm Anthony. I'm a full-stack engineer with over six years of experience, focused on building and modernizing web apps. I've spent most of my career working on production-level systems and REST APIs that can handle real-world use. I enjoy the challenge of a tricky architectural problem as much as I love getting the details of a user experience just right. Lately I've been building AI-powered features—agents, LLM integrations, and MCP servers that let AI tools plug straight into an app. My go-to tools are React, TypeScript, Node.js, and AWS.",
   "When I'm not coding, I'm usually creating digital worlds in Blender and Unreal Engine 5. I love exploring the intersection of nature, architecture, and technology—from sunlit forest gardens to atmospheric sci-fi monoliths. This site is where my two passions meet: the logic of code and the beauty of 3D art.",
   "Outside my digital workspaces, you'll usually find me turning laps on my sim racing rig, piecing together an intricate LEGO set, or heading into the city to catch a Broadway show.",
   "Thanks for stopping by — feel free to explore the projects and renders!",
@@ -36,6 +36,7 @@ export default function AboutSection() {
                   "React · Next.js",
                   "Node.js",
                   "REST APIs",
+                  "AI / LLM · MCP",
                   "PostgreSQL · Prisma",
                   "PHP · Laravel",
                   "AWS",

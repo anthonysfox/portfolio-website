@@ -17,8 +17,8 @@ export const FEATURED: FeaturedProject[] = [
     repo: "spotify-playlist-subscribe-v2",
     title: "PlaylistFox (Web)",
     blurb:
-      "Built to solve my own problem: manually keeping Spotify playlists fresh. Set it up once and it keeps your playlists updated automatically.",
-    tags: ["Next.js", "React", "TypeScript", "Spotify API", "Automation"],
+      "Built to solve my own problem: manually keeping playlists fresh across Spotify and Apple Music. Managed playlists auto-sync new tracks on a schedule, an AI assistant handles search and playlist generation from a vibe, and an MCP server exposes it all as tools for your own AI clients.",
+    tags: ["Next.js", "TypeScript", "AI SDK", "MCP", "Spotify", "Apple Music"],
   },
   {
     repo: "playlist-fox-react-native",
