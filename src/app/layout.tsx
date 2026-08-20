@@ -16,9 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anthony Fox — Full-Stack Developer & 3D Artist",
+  metadataBase: new URL("https://anthonyfox.dev"),
+  title: "Anthony Fox — Full-Stack Software Engineer",
   description:
-    "Full-stack developer based in New Jersey with six years of experience building web apps — plus a Blender habit that turns into cozy, glowing worlds after dark.",
+    "Full-stack software engineer based in New Jersey with six years of experience building web apps and AI-powered features. Blender is what I do for fun on the side.",
 };
 
 export default function RootLayout({

@@ -21,13 +21,6 @@ function render(
   };
 }
 
-/** The hero showcase render. */
-export const HERO_RENDER: Render = render(
-  "forest_garden",
-  "forest_garden.blend",
-  "3840×2160 · CYCLES",
-);
-
 /**
  * The renders section. The first entry is featured (wide); the rest fill the grid.
  */

@@ -9,11 +9,11 @@ export default function RendersSection() {
       <div className={`${styles.wrap} ${styles.rendersHeader}`}>
         <Reveal>
           <div className="sec-head">
-            <span className="eyebrow">3D / Blender</span>
-            <h2>Scenes I&apos;ve built in Blender.</h2>
+            <span className="eyebrow">Side project · Blender</span>
+            <h2>Scenes I&apos;ve built for fun.</h2>
             <p>
-              Each one modeled, lit, and rendered from scratch. Click any scene
-              to play it.
+              Outside of engineering, I model, light, and render these
+              scenes from scratch. Click any one to play it.
             </p>
           </div>
         </Reveal>

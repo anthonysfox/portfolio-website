@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only asset backups (large binaries, not meant for the repo)
+/assets-backup

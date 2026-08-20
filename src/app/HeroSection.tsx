@@ -1,6 +1,6 @@
 import Reveal from "@/components/Reveal";
-import HeroRender from "@/components/HeroRender";
-import { HERO_RENDER } from "@/config/renders";
+import TypedRole from "@/components/TypedRole";
+import FoxScene from "@/components/FoxScene";
 import styles from "./page.module.css";
 
 export default function HeroSection() {
@@ -8,10 +8,9 @@ export default function HeroSection() {
     <header id="top" className={styles.heroHeader}>
       <div className={`${styles.wrap} ${styles.heroWrap}`}>
         <div className={styles.heroGrid}>
-          {/* Left column */}
           <div>
             <Reveal>
-              <span className="eyebrow">Full-stack developer · New Jersey</span>
+              <span className="eyebrow">Building AI-powered web apps</span>
             </Reveal>
             <Reveal delay={0.08}>
               <h1
@@ -23,25 +22,21 @@ export default function HeroSection() {
                   margin: "22px 0 26px",
                 }}
               >
-                From structured systems to{" "}
-                <span style={{ color: "var(--amber)", fontStyle: "italic" }}>
-                  rendered realities
-                </span>
-                .
+                Full-stack software <TypedRole />
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
               <p
                 style={{
                   color: "var(--muted)",
-                  maxWidth: 480,
+                  maxWidth: 620,
                   marginBottom: 28,
                   fontSize: "clamp(16px,1.4vw,19px)",
                 }}
               >
-                Full-stack developer with six years of experience shipping web
-                apps. Off the clock, I&apos;m usually in Blender building small,
-                glowing worlds.
+                Six years of experience shipping production web apps and,
+                lately, AI-powered features. For fun, I mess around in
+                Blender building glowing little 3D worlds.
               </p>
             </Reveal>
 
@@ -81,9 +76,47 @@ export default function HeroSection() {
             </Reveal>
           </div>
 
-          {/* Right column — showcase render */}
           <Reveal delay={0.2} y={32}>
-            <HeroRender {...HERO_RENDER} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  width: "min(78%, 400px)",
+                  aspectRatio: "1 / 1",
+                  borderRadius: "50%",
+                  padding: "5px",
+                  background:
+                    "conic-gradient(from 180deg, var(--amber), var(--amber-deep), var(--cream), var(--amber))",
+                  boxShadow:
+                    "0 0 40px -12px rgba(239, 111, 52, 0.4), 0 0 90px -24px rgba(193, 74, 28, 0.3)",
+                }}
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    background:
+                      "radial-gradient(circle at 50% 42%, #3a1f10 0%, var(--ink-2) 75%)",
+                  }}
+                >
+                  <FoxScene />
+                </div>
+              </div>
+              <span
+                style={{ fontSize: 13, color: "var(--muted)", letterSpacing: "0.02em" }}
+              >
+                Side project — modeled in Blender · move your cursor
+              </span>
+            </div>
           </Reveal>
         </div>
       </div>
