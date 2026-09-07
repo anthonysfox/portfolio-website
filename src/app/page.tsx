@@ -13,8 +13,8 @@ export default async function Home() {
     <main style={{ position: "relative", zIndex: 1 }}>
       <HeroSection />
       <CodeSection repos={repos} />
-      <RendersSection />
       <AboutSection />
+      <RendersSection />
       <ContactSection />
       <Footer />
     </main>

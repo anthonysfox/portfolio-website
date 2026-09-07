@@ -12,7 +12,10 @@ interface Props {
 }
 
 export default function RendersGallery({ renders }: Props) {
-  const [active, setActive] = useState<Render | null>(null);
+  const [active, setActive] = useState<{
+    render: Render;
+    origin: { x: number; y: number };
+  } | null>(null);
   const reduce = useReducedMotion();
   const [featured, ...rest] = renders;
 
@@ -30,7 +33,7 @@ export default function RendersGallery({ renders }: Props) {
             render={featured}
             mode="autoplay"
             hint="⤢ Expand"
-            onExpand={() => setActive(featured)}
+            onExpand={(origin) => setActive({ render: featured, origin })}
           />
         </motion.div>
       )}
@@ -49,14 +52,18 @@ export default function RendersGallery({ renders }: Props) {
               delay: reduce ? 0 : (i % 2) * 0.08,
             }}
           >
-            <RenderTile render={r} onExpand={() => setActive(r)} />
+            <RenderTile render={r} onExpand={(origin) => setActive({ render: r, origin })} />
           </motion.div>
         ))}
       </div>
 
       {/* On touch devices onExpand never fires (native player takes over), so
           `active` stays null and the modal is desktop-only by construction. */}
-      {active && <RenderModal render={active} onClose={() => setActive(null)} />}
+      <RenderModal
+        render={active?.render ?? null}
+        origin={active?.origin}
+        onClose={() => setActive(null)}
+      />
 
       <style>{`
         .featured-wrap {

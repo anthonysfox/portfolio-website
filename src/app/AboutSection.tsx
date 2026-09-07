@@ -2,8 +2,8 @@ import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
 const aboutParagraphs = [
-  "Hi, I'm Anthony. I'm a full-stack engineer with over six years of experience, focused on building and modernizing web apps. I've spent most of my career working on production-level systems and REST APIs that can handle real-world use. I enjoy the challenge of a tricky architectural problem as much as I love getting the details of a user experience just right. Lately I've been building AI-powered features—agents, LLM integrations, and MCP servers that let AI tools plug straight into an app. My go-to tools are React, TypeScript, Node.js, and AWS.",
-  "For fun, I build digital worlds in Blender and Unreal Engine 5—sunlit forest gardens, atmospheric sci-fi monoliths, that kind of thing. It's a creative outlet, not the day job, but a few of those renders are up above if you scrolled past them.",
+  "Hi, I'm Anthony. I'm a full-stack engineer with over six years of experience, focused on building and modernizing web apps. I've spent most of my career working on production-level systems and REST APIs that can handle real-world use. I enjoy the challenge of a tricky architectural problem as much as I love getting the details of a user experience just right. Lately I've been building AI-powered features—agents, LLM integrations, and MCP servers that let AI tools plug straight into an app. My go-to tools are React, TypeScript, Node.js, AWS, and Cloudflare.",
+  "For fun, I build digital worlds in Blender and Unreal Engine 5—sunlit forest gardens, atmospheric sci-fi monoliths, that kind of thing. It's a creative outlet, not the day job, but a few of those renders are just below.",
   "Outside my digital workspaces, you'll usually find me turning laps on my sim racing rig, piecing together an intricate LEGO set, or heading into the city to catch a Broadway show.",
   "Thanks for stopping by — if you'd like to chat, my info's just below.",
 ];
@@ -40,6 +40,7 @@ export default function AboutSection() {
                   "PostgreSQL · Prisma",
                   "PHP · Laravel",
                   "AWS",
+                  "Cloudflare",
                   "Tailwind CSS",
                 ].map((s) => (
                   <li key={s} className={styles.stackItem}>

@@ -75,6 +75,7 @@ export default function TypedRole() {
       <span aria-hidden="true">
         {text}
         <span
+          className="typed-caret"
           style={{
             marginLeft: "0.03em",
             animation: "blink 1s step-end infinite",
@@ -99,6 +100,9 @@ export default function TypedRole() {
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .typed-caret { animation: none; }
         }
       `}</style>
     </span>

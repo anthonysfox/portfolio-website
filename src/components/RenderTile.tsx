@@ -70,8 +70,10 @@ interface Props {
   /** "hover" plays on hover; "autoplay" plays while in view (featured tile). */
   mode?: "hover" | "autoplay";
   hint?: string;
-  /** Desktop click handler (opens the modal). Not used on touch devices. */
-  onExpand: () => void;
+  /** Desktop click handler (opens the modal), given the tile's viewport-relative center to scale in from. Not used on touch devices. */
+  onExpand: (origin: { x: number; y: number }) => void;
+  /** Narrower title bar for tight layouts (e.g. the homepage strip) — drops the resolution badge and truncates the filename. */
+  compact?: boolean;
 }
 
 export default function RenderTile({
@@ -79,8 +81,10 @@ export default function RenderTile({
   mode = "hover",
   hint = "▶ Play",
   onExpand,
+  compact = false,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   const isTouch = useIsTouch();
   const reduce = useReducedMotion();
 
@@ -113,8 +117,19 @@ export default function RenderTile({
 
   const activate = () => {
     const v = videoRef.current;
-    if (isTouch && v) openInNativePlayer(v, render);
-    else onExpand();
+    if (isTouch && v) {
+      openInNativePlayer(v, render);
+      return;
+    }
+    const rect = frameRef.current?.getBoundingClientRect();
+    onExpand(
+      rect
+        ? {
+            x: ((rect.left + rect.width / 2) / window.innerWidth) * 100,
+            y: ((rect.top + rect.height / 2) / window.innerHeight) * 100,
+          }
+        : { x: 50, y: 50 },
+    );
   };
 
   const hoverProps =
@@ -124,6 +139,7 @@ export default function RenderTile({
 
   return (
     <div
+      ref={frameRef}
       className="viewport render-frame"
       role="button"
       tabIndex={0}
@@ -144,9 +160,11 @@ export default function RenderTile({
             <i />
             <i />
           </span>
-          <span>{render.filename}</span>
+          <span className={compact ? "fname-text-compact" : undefined}>
+            {render.filename}
+          </span>
         </span>
-        <span>{render.resolution}</span>
+        {!compact && <span>{render.resolution}</span>}
       </div>
       <div className="vp-media ratio-16-9">
         {/* #t=0.1 shows a still poster frame instead of black before playback */}

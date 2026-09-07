@@ -31,8 +31,8 @@ export const FEATURED: FeaturedProject[] = [
     repo: "personal_website", // Or your repo name
     title: "Personal Portfolio",
     blurb:
-      "The Next.js site you're looking at now. Media is served via Cloudflare and built with TypeScript with Motion animations.",
-    tags: ["Next.js", "React", "TypeScript", "Motion", "Cloudflare"],
+      "The Next.js site you're looking at now. I modeled and rigged that fox in the hero myself, then brought it into Three.js with React Three Fiber so its head actually follows your cursor (and wanders around on its own if you leave it alone). Media is served via Cloudflare, and everything is animated with Motion.",
+    tags: ["Next.js", "React", "TypeScript", "Three.js", "React Three Fiber", "Motion", "Cloudflare"],
     demo: "https://anthonyfox.dev/",
   },
 ];

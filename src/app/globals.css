@@ -130,6 +130,13 @@ video {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+}
+
+.fname-text-compact {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lights {
@@ -287,6 +294,11 @@ video {
   box-shadow: 0 8px 24px rgba(239, 111, 52, 0.32);
 }
 
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
 .btn.ghost {
   background: transparent;
   color: var(--cream);
@@ -318,6 +330,10 @@ video {
   transform: translateY(-4px);
   border-color: var(--muted-2);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.render-frame:active {
+  transform: translateY(-2px) scale(0.985);
+  transition-duration: 0.1s;
 }
 .render-frame:focus-visible {
   outline: 2px solid var(--amber);
