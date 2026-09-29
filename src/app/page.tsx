@@ -5,6 +5,7 @@ import RendersSection from "./RendersSection";
 import AboutSection from "./AboutSection";
 import ContactSection from "./ContactSection";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 export default async function Home() {
   const repos: Repo[] = await getRepos();
@@ -17,6 +18,7 @@ export default async function Home() {
       <RendersSection />
       <ContactSection />
       <Footer />
+      <Analytics />
     </main>
   );
 }
