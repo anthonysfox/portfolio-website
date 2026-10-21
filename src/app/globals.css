@@ -393,3 +393,19 @@ video {
   align-items: center;
   justify-content: space-between;
 }
+
+/* ---- Print: drop site chrome so pages (e.g. /resume) print clean on white ---- */
+@media print {
+  @page {
+    margin: 0.6in;
+  }
+  body {
+    background: #fff;
+    color: #111;
+  }
+  body::before,
+  body::after,
+  #nav {
+    display: none;
+  }
+}

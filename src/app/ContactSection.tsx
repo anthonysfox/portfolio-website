@@ -38,12 +38,8 @@ export default function ContactSection() {
             >
               LinkedIn ↗
             </a>
-            <a
-              href="https://media.anthonyfox.dev/Anthony_Fox_Software_Engineer_Resume.pdf"
-              target="_blank"
-              className="btn ghost"
-            >
-              Resume ↗
+            <a href="/resume" className="btn ghost">
+              Resume
             </a>
           </div>
         </Reveal>
