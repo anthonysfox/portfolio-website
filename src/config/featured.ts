@@ -21,11 +21,11 @@ export const FEATURED: FeaturedProject[] = [
     tags: ["Next.js", "TypeScript", "AI SDK", "MCP", "Spotify", "Apple Music"],
   },
   {
-    repo: "playlist-fox-react-native",
-    title: "PlaylistFox (Mobile)",
+    repo: "jobfox",
+    title: "JobFox",
     blurb:
-      "A mobile take on the playlist tooling, built with React Native. Still in progress, but coming together nicely.",
-    tags: ["React Native", "TypeScript", "In Progress"],
+      "My own job-search pipeline. It pulls postings from Adzuna, Hacker News, and company ATS boards, ranks them with local embeddings, then has Claude score fit against my resume, checked against my own hand labels. For roles I apply to, it drafts tailored bullets and answers, and code verifies every claim traces back to my resume. I still submit everything myself.",
+    tags: ["Next.js", "TypeScript", "Claude API", "PostgreSQL", "pgvector", "Prisma", "Zod"],
   },
   {
     repo: "personal_website", // Or your repo name
